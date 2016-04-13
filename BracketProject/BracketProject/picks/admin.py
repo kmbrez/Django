@@ -1,5 +1,14 @@
 ﻿from django.contrib import admin
-from .models import Player
+from .models import Team, Region
 
 
-admin.site.register(Player)
+class TeamInline(admin.TabularInline):
+    model = Team
+    extra = 15
+
+
+class RegionAdmin(admin.ModelAdmin):
+    inlines = [TeamInline]
+
+
+admin.site.register(Region, RegionAdmin)
