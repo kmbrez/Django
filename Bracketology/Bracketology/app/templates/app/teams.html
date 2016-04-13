@@ -1,0 +1,11 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h1>{{ title }}.</h1>
+
+{% for team in teams %}
+<h2>{{ team.name }}</h2>
+{{ team.seed }}
+{% endfor %}
+{% endblock %}

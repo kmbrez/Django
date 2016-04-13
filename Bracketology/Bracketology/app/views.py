@@ -1,4 +1,4 @@
-"""
+﻿"""
 Definition of views.
 """
 
@@ -6,6 +6,8 @@ from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
+
+from teams.models import Team
 
 def home(request):
     """Renders the home page."""
@@ -45,5 +47,18 @@ def about(request):
             'title':'About',
             'message':'Your application description page.',
             'year':datetime.now().year,
+        })
+    )
+
+def teams(request):
+    """Renders the teams page."""
+    assert isinstance(request, HttpRequest)
+    teams = Team.objects.all()
+    return render(
+        request,
+        'app/teams.html',
+        context_instance = RequestContext(request,
+        {
+            'teams':teams,
         })
     )
